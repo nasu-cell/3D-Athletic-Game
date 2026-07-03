@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     public InputAction dashAction;
     public InputAction jumpAction;
     //プレイヤー挙動の変数
-    public float speed = 2f;
+    public float speed;
+    public float walkSpeed;
+    public float dashSpeed;
+    public float speedMultiplier = 1f;
     public bool isGround = true;
     public float jumpForce = 10f;
     //参照するもの
@@ -35,7 +38,8 @@ public class PlayerController : MonoBehaviour
         //方向キーの入力受付
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         //ダッシュボタンの受付
-        speed = dashAction.IsPressed() ? 4f : 2f;
+        float baseSpeed = dashAction.IsPressed() ? dashSpeed : walkSpeed;
+        speed = baseSpeed * speedMultiplier;
         //進む方向
         Vector3 moveDirection = Vector3.zero;
         //移動処理
