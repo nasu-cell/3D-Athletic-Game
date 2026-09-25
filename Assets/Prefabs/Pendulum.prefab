@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 1097079511876390930}
   - component: {fileID: 3551756223444689241}
   - component: {fileID: 5493211258208773595}
+  - component: {fileID: 7037258252549240292}
   m_Layer: 0
   m_Name: Weight
   m_TagString: Untagged
@@ -188,3 +189,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7037258252549240292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6287008249693686985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bd732f49464de4ebab7703b1084c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StockDown
+  gameManager: {fileID: 0}
