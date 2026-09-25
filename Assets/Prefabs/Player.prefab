@@ -869,6 +869,9 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   speed: 2
+  walkSpeed: 5
+  dashSpeed: 10
+  speedMultiplier: 1
   isGround: 1
   jumpForce: 8
   animator: {fileID: 6352794287796162156}

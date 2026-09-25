@@ -9,12 +9,14 @@ public class BlinkBlock : MonoBehaviour
     private MeshRenderer meshRenderer;
     private Collider blockCollider;
     private Material blockMaterial;
+    [SerializeField] GameManager gameManager;
     [SerializeField] private AudioClip lowSound;
     [SerializeField] private AudioClip highSound;
     private AudioSource audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = FindAnyObjectByType<GameManager>();
         meshRenderer = GetComponent<MeshRenderer>();
         blockCollider = GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
@@ -29,7 +31,7 @@ public class BlinkBlock : MonoBehaviour
     }
     IEnumerator Blink()
     {
-        while (true)
+        while (gameManager.isGamePlaying)
         {
             for(int i=0; i<3; i++)
             {
@@ -43,7 +45,6 @@ public class BlinkBlock : MonoBehaviour
             color.a = exist ? 1.0f: 0.5f;
             blockCollider.enabled = exist;
             blockMaterial.color = color;
-            blockCollider.enabled = exist;
         }
     }
 }
