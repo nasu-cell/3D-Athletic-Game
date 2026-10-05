@@ -20,7 +20,8 @@ public class LogSpawner : MonoBehaviour
     }
     void SpawnLog()
     {
-        GameObject SpawnLog = Instantiate(log, transform.position, log.transform.rotation);
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, direction) * log.transform.rotation;
+        GameObject SpawnLog = Instantiate(log, transform.position, rotation);
         Log logScript = SpawnLog.GetComponent<Log>();
         if(logScript != null)
         {

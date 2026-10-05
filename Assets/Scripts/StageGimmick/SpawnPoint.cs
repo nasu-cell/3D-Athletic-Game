@@ -4,6 +4,7 @@ public class SpawnPoint : MonoBehaviour
 {
     [SerializeField] private int spawnPointID;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private GameObject cylinder;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +16,22 @@ public class SpawnPoint : MonoBehaviour
     {
         
     }
+    public void CylinderAppear()
+    {
+        if (cylinder != null)
+        {
+            cylinder.SetActive(true);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
             gameManager.savedSpawnPointID = spawnPointID;
+            if(cylinder != null)
+            {
+                cylinder.SetActive(false);
+            }
         }
     }
 }

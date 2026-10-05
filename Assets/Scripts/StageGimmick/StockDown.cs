@@ -12,7 +12,7 @@ public class StockDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -20,6 +20,14 @@ public class StockDown : MonoBehaviour
         {
             gameManager.StockDecrease();
             Destroy(collision.gameObject);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameManager.StockDecrease();
+            Destroy(other.gameObject);
         }
     }
 }

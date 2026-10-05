@@ -41,14 +41,14 @@ public class FloorMove : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("床乗った");
-            collision.transform.SetParent(transform);
+            collision.transform.SetParent(transform, true);
         }
     }
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            collision.transform.SetParent(null, true);
         }
     }
 }
