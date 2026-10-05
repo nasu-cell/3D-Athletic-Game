@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     {
         stock = maxStock;
         savedSpawnPointID = 0;
+        Cylinder();
         SpawnPlayer();
         isGamePlaying = true;
     }
@@ -72,5 +73,12 @@ public class GameManager : MonoBehaviour
 
         // 新しく生成したPlayerをカメラのTracking Targetに設定
         cinemachineCamera.Target.TrackingTarget = player.transform;
+    }
+    private void Cylinder()
+    {
+        foreach(SpawnPoint spawnPoint in spawnPoints)
+        {
+            spawnPoint.CylinderAppear();
+        }
     }
 }

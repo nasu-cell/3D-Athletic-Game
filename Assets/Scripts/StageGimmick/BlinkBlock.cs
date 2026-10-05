@@ -1,50 +1,72 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlinkBlock : MonoBehaviour
 {
     public bool exist;
+
     private MeshRenderer meshRenderer;
     private Collider blockCollider;
     private Material blockMaterial;
-    [SerializeField] GameManager gameManager;
+    private AudioSource audioSource;
+
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private AudioClip lowSound;
     [SerializeField] private AudioClip highSound;
-    private AudioSource audioSource;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManager>();
+
         meshRenderer = GetComponent<MeshRenderer>();
         blockCollider = GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
         blockMaterial = meshRenderer.material;
+
+
         StartCoroutine(Blink());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     IEnumerator Blink()
     {
-        while (gameManager.isGamePlaying)
+
+        while (true)
         {
-            for(int i=0; i<3; i++)
+
+            yield return new WaitUntil(() => gameManager.isGamePlaying);
+
+
+            // 3秒待つ
+            for (int i = 0; i < 3; i++)
             {
                 yield return new WaitForSeconds(1);
+
+                if (!gameManager.isGamePlaying)
+                {
+                    break;
+                }
+
                 audioSource.PlayOneShot(lowSound);
             }
+
+            if (!gameManager.isGamePlaying)
+                continue;
+
             exist = !exist;
+
             yield return new WaitForSeconds(1);
+
+            if (!gameManager.isGamePlaying)
+                continue;
+
+
             audioSource.PlayOneShot(highSound);
-            Color color = blockMaterial.color;
-            color.a = exist ? 1.0f: 0.5f;
+
+            Color color2 = blockMaterial.color;
+            color2.a = exist ? 1.0f : 0.5f;
+
             blockCollider.enabled = exist;
-            blockMaterial.color = color;
+            blockMaterial.color = color2;
         }
     }
 }

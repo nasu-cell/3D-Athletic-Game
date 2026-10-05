@@ -31,7 +31,7 @@ public class FallBlock : MonoBehaviour
         if (fall)
         {
             transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
-            if (transform.position.y < lowLimit)
+            if (transform.position.y < startPosition.y - lowLimit)
             {
                 fall = false;
                 StartCoroutine(Respawn());
