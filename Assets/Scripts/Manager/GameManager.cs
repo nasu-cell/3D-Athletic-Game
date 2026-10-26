@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Cinemachine;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,18 +23,18 @@ public class GameManager : MonoBehaviour
         GameStart();
     }
 
-    public void StockDecrease()
+    public async UniTask StockDecrease()
     {
         isGamePlaying = false;
         stock--;
 
         if (stock <= 0)
         {
-            StartCoroutine(GameOver());
+            await GameOver();
         }
         else
         {
-            StartCoroutine(ReStart());
+            await ReStart();
         }
     }
 
@@ -45,18 +47,15 @@ public class GameManager : MonoBehaviour
         isGamePlaying = true;
     }
 
-    IEnumerator GameOver()
+    async UniTask GameOver()
     {
-        uiManager.StockChange(stock);
-        yield return new WaitForSeconds(1.5f);
-        uiManager.GameOver(maxStock);
+        await uiManager.StockChange(stock);
+        await uiManager.GameOver(maxStock);
     }
 
-    IEnumerator ReStart()
+    public async UniTask ReStart()
     {
-        uiManager.StockChange(stock);
-
-        yield return new WaitForSeconds(1.5f);
+        await uiManager.StockChange(stock);
 
         SpawnPlayer();
 

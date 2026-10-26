@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,32 +22,24 @@ public class UIManager : MonoBehaviour
     {
         
     }
-    public void StockChange(int stock)
+    public async UniTask StockChange(int stock)
     {
-        StartCoroutine(StockDisplay(stock));
+        stockChangePanel.SetActive(true);
+        stockText.text = "X " + stock;
+        await UniTask.Delay(TimeSpan.FromSeconds(1f));
+        stockPanelText.text = "X " + stock;
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        stockChangePanel.SetActive(false);
     }
-    public void GameOver(int maxStock)
+    public async UniTask GameOver(int maxStock)
     {
-        StartCoroutine(GameOverDisplay(maxStock));
+        gameOverPanel.SetActive(true);
+        await UniTask.Delay(TimeSpan.FromSeconds(0.5f));
+        stockText.text = "X " + maxStock;
+        stockPanelText.text = "X " + maxStock;
     }
     public void ClickRestart()
     {
         gameOverPanel.SetActive(false);
-    }
-    IEnumerator GameOverDisplay(int maxStock)
-    {
-        gameOverPanel.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        stockText.text = "X " + maxStock;
-        stockPanelText.text = "X " + maxStock;
-    }
-    IEnumerator StockDisplay(int stock)
-    {
-        stockChangePanel.SetActive(true);
-        stockText.text = "X " + stock;
-        yield return new WaitForSeconds(1);
-        stockPanelText.text = "X " + stock;
-        yield return new WaitForSeconds(0.5f);
-        stockChangePanel.SetActive(false);
     }
 }

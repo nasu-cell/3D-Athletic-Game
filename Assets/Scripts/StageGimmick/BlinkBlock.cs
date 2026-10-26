@@ -1,3 +1,5 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,22 +26,22 @@ public class BlinkBlock : MonoBehaviour
         blockMaterial = meshRenderer.material;
 
 
-        StartCoroutine(Blink());
+        Blink().Forget();
     }
 
-    IEnumerator Blink()
+    async UniTask Blink()
     {
 
         while (true)
         {
 
-            yield return new WaitUntil(() => gameManager.isGamePlaying);
+            await UniTask.WaitUntil(() => gameManager.isGamePlaying);
 
 
             // 3秒待つ
             for (int i = 0; i < 3; i++)
             {
-                yield return new WaitForSeconds(1);
+                await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
                 if (!gameManager.isGamePlaying)
                 {
@@ -54,7 +56,7 @@ public class BlinkBlock : MonoBehaviour
 
             exist = !exist;
 
-            yield return new WaitForSeconds(1);
+            await UniTask.Delay(TimeSpan.FromSeconds(1f));
 
             if (!gameManager.isGamePlaying)
                 continue;
