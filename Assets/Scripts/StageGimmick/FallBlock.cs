@@ -1,4 +1,5 @@
-using System.Collections;
+using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class FallBlock : MonoBehaviour
@@ -34,7 +35,7 @@ public class FallBlock : MonoBehaviour
             if (transform.position.y < startPosition.y - lowLimit)
             {
                 fall = false;
-                StartCoroutine(Respawn());
+                Respawn().Forget();
             }
         }
     }
@@ -59,12 +60,13 @@ public class FallBlock : MonoBehaviour
             timer = 0f;
         }
     }
-    IEnumerator Respawn()
+    async UniTask Respawn()
     {
         if (meshRenderer != null) meshRenderer.enabled = false;
         if (blockCollider != null) blockCollider.enabled = false;
         transform.position = startPosition;
-        yield return new WaitForSeconds(respawnTime);
+        // オブジェクト破棄時に待機を止める（コルーチンと同じ挙動）
+        await UniTask.Delay(TimeSpan.FromSeconds(respawnTime), cancellationToken: destroyCancellationToken);
         if (meshRenderer != null) meshRenderer.enabled = true;
         if (blockCollider != null) blockCollider.enabled = true;
     }
