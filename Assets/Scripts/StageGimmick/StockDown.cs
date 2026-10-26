@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class StockDown : MonoBehaviour
@@ -18,7 +19,7 @@ public class StockDown : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            gameManager.StockDecrease();
+           gameManager.StockDecrease().Forget();
             Destroy(collision.gameObject);
         }
     }
@@ -26,7 +27,7 @@ public class StockDown : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameManager.StockDecrease();
+            gameManager.StockDecrease().Forget();
             Destroy(other.gameObject);
         }
     }
