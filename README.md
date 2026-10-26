@@ -84,6 +84,7 @@ Unity 製の 3D アスレチックゲームです。
 | 入力 | Input System 1.19.0 |
 | カメラ | Cinemachine 3.1.7 |
 | UI | uGUI / TextMeshPro |
+| 非同期処理 | [UniTask](https://github.com/Cysharp/UniTask)（Git URL で導入。ストック表示・リスポーン・ゲームオーバーの待機処理、点滅ブロックの切り替え、落下ブロックの復活に使用） |
 | バージョン管理 | Git / GitHub |
 
 ### 起動方法
@@ -93,6 +94,7 @@ Unity 製の 3D アスレチックゲームです。
    git clone https://github.com/nasu-cell/3D-Athletic-Game.git
    ```
 2. Unity Hub で Unity **6000.4.10f1** をインストールします。
+   - UniTask は Git URL で参照しているため、PC に Git がインストールされている必要があります（初回起動時に Package Manager が自動で取得します）。
 3. Unity Hub の「追加」からプロジェクトフォルダーを開きます。
 4. `Assets/Scenes/TitleScene.unity` を開き、再生ボタンを押します。
 
@@ -108,8 +110,8 @@ Assets/
 │                   （SpeedUpArea / SpeedDownArea は実装済み・未配置）
 ├── Scripts/
 │   ├── Manager/
-│   │   ├── GameManager     ストック・リスポーン・ゲーム開始の管理
-│   │   ├── UIManager       ストック表示・ゲームオーバー表示
+│   │   ├── GameManager     ストック・リスポーン・ゲーム開始の管理（UniTask で非同期処理）
+│   │   ├── UIManager       ストック表示・ゲームオーバー表示（UniTask で待機）
 │   │   └── SceneMover      シーン遷移
 │   ├── Player/
 │   │   └── PlayerController    移動・ダッシュ・ジャンプ
