@@ -68,9 +68,9 @@ Unity 製の 3D アスレチックゲームです。
 | 落下ブロック (FallBlock) | 一定時間乗っていると落下し、しばらくすると元の位置に復活します。 |
 | 点滅ブロック (BlinkBlock) | 一定間隔で出現と消滅を繰り返します。切り替わる前に音で知らせます。赤と青の 2 種類があります。 |
 | ジャンプ台 (JumpFloor) | 踏むと大きく跳ね上がります。 |
-| 振り子 (Pendulum) | 一定のリズムで左右に振れる障害物です。 |
-| 丸太 (Log / LogSpawner) | スポナーから一定間隔で丸太が転がってきます。 |
-| ストックダウン (StockDown) | 触れるとストックが減ります。 |
+| 振り子 (Pendulum) | 一定のリズムで左右に振れる障害物です。触れるとストックが減ります。 |
+| 丸太 (Log / LogSpawner) | スポナーから一定間隔で丸太が転がってきます。触れるとストックが減ります。 |
+| ストックダウン (StockDown) | 触れるとストックが減ります（落下エリア・振り子・丸太に設定）。 |
 | チェックポイント (SpawnPoint) | 通過するとリスタート地点が更新されます。 |
 | ゴール (GoalPoint) | 触れるとクリア画面へ移動します。 |
 
@@ -105,6 +105,7 @@ Assets/
 │   ├── GameScene       メインのステージ
 │   └── ClearScene      クリア画面
 ├── Prefabs/        Player・各ステージギミックのプレハブ、UI 画像
+│                   （SpeedUpArea / SpeedDownArea は実装済み・未配置）
 ├── Scripts/
 │   ├── Manager/
 │   │   ├── GameManager     ストック・リスポーン・ゲーム開始の管理
@@ -115,7 +116,8 @@ Assets/
 │   └── StageGimmick/   各ステージギミック・チェックポイント・ゴールのスクリプト
 ├── Animator/       プレイヤーのアニメーターコントローラー
 ├── Materials/      ステージ用マテリアル
-└── Settings/       URP の設定
+├── Settings/       URP の設定
+└── InputSystem_Actions.inputactions   入力アクション定義（カメラ操作で使用）
 ```
 
 ## 使用アセット
