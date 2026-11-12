@@ -792,12 +792,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1572,6 +1572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPoint
   spawnPointID: 2
   gameManager: {fileID: 1213279626}
+  cylinder: {fileID: 0}
 --- !u!65 &193892006
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1981,6 +1982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPoint
   spawnPointID: 1
   gameManager: {fileID: 1213279626}
+  cylinder: {fileID: 0}
 --- !u!65 &289143819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6713,6 +6715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPoint
   spawnPointID: 3
   gameManager: {fileID: 1213279626}
+  cylinder: {fileID: 0}
 --- !u!1001 &1537960157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8944,6 +8947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnPoint
   spawnPointID: 0
   gameManager: {fileID: 0}
+  cylinder: {fileID: 0}
 --- !u!1001 &1981464866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9297,6 +9301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f108807c93cf8d4e837c7526651afa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GoalPoint
+  sceneMover: {fileID: 0}
 --- !u!1001 &2025254527
 PrefabInstance:
   m_ObjectHideFlags: 0

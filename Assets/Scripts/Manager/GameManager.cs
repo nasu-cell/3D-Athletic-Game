@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     // Cinemachine Camera
     [SerializeField] private CinemachineCamera cinemachineCamera;
+    private bool isRespawning = false;
 
     public int savedSpawnPointID;
     public bool isGamePlaying = false;
@@ -25,6 +26,13 @@ public class GameManager : MonoBehaviour
 
     public async UniTask StockDecrease()
     {
+        // ゲーム停止中、またはリスポーン処理中なら無視
+        if (!isGamePlaying || isRespawning)
+        {
+            return;
+        }
+
+        isRespawning = true;
         isGamePlaying = false;
         stock--;
 
@@ -60,6 +68,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
 
         isGamePlaying = true;
+        isRespawning = false;
     }
 
     private void SpawnPlayer()
